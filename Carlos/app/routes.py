@@ -31,6 +31,10 @@ def add_usuarios():
     usuario_existente = Usuarios.query.filter_by(usuario=data['usuario']).first()
     if usuario_existente:
         return jsonify({"error": "Usuário já existe"}), 400
+    
+    cnpj_existente = Usuarios.query.filter_by(cnpj=data['cnpj']).first()
+    if cnpj_existente:
+        return jsonify({"error": "cnpj já existe"}), 400
 
     # Extraia a senha do JSON enviado na solicitação
     senha = data.get('senha')
